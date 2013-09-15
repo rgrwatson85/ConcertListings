@@ -1,0 +1,33 @@
+<h1>Listing bookings</h1>
+
+<table>
+  <tr>
+    <th><a title="View All Bands"> <%= link_to 'Band', bands_path %></a></th>
+    <th><a title="View All Clubs"> <%= link_to 'Club', clubs_path %></a></th>
+    <th>Fee</th>
+    <th>Show Date</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @bookings.each do |booking| %>
+  <tr>
+    <%
+       band = Band.find(booking.band_id)
+       club = Club.find(booking.club_id)
+    %>
+    <td><%= link_to band.name, band %></td>
+    <td><%= link_to club.name, club %></td>
+    <td><%= sprintf('$%0.02f', booking.fee) %></td>
+    <td><%= booking.show_date %></td>
+    <td><%= link_to 'Show', booking %></td>
+    <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
+    <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Booking', new_booking_path %>

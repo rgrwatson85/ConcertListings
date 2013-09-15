@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @band.name %>
+</p>
+
+<p>
+  <b>Number of members:</b>
+  <%= @band.num_members %>
+</p>
+
+<p>
+  <b>Playing At The Following Clubs:</b>
+  <table>
+    <tr>
+      <td><b>Club Name</b></td>
+      <td><b>Show Date</b></td>
+      <td><b>Cover Charge</b></td>
+    </tr>
+    <% (@band.bookings).each do |booking| %>
+       <tr>
+         <% club = Club.find(booking.club_id) %>
+         <td><%= link_to club.name, club %></td>
+         <td><%= link_to "#{booking.show_date}", booking %></td>
+         <td><%= sprintf('$%0.02f', booking.fee) %></td>
+       </tr>
+    <% end %>
+  </table>
+</p>
+
+<%= link_to "Edit #{@band.name} info", edit_band_path(@band) %> |
+<%= link_to 'Back To Bands', bands_path %>

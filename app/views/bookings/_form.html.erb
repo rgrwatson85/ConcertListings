@@ -1,0 +1,33 @@
+<%= form_for(@booking) do |f| %>
+  <% if @booking.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@booking.errors.count, 'error') %> prohibited this booking from being saved:</h2>
+
+      <ul>
+      <% @booking.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :band_id %><br />
+    <%= f.select(:band_id, Band.all.map {|b| [b.name, b.id]}, :prompt => 'Select a Band...') %>
+  </div>
+  <div class="field">
+    <%= f.label :club_id %><br />
+    <%= f.select(:club_id, Club.all.map {|c| [c.name, c.id]}, :prompt => 'Select a Club...') %>
+  </div>
+  <div class="field">
+    <%= f.label :fee %><br />
+    <%= f.text_field :fee %>
+  </div>
+  <div class="field">
+    <%= f.label :show_date %><br />
+    <%= f.text_field :show_date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  band_id: 1
+  club_id: 1
+  fee: 1.5
+
+two:
+  band_id: 1
+  club_id: 1
+  fee: 1.5

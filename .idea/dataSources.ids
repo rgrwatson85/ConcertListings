@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="Rails has_many_through: test" product="SQLite" version="3.7.2" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native" uuid="c1c96516-b0f7-4366-ac2c-bf0a8ee3126e">
+    <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+    <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/test.sqlite3</jdbc-url>
+    <libraries>
+      <library>
+        <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/xerial-sqlite-license.txt</url>
+      </library>
+      <library>
+        <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/sqlite-jdbc-3.7.2.jar</url>
+      </library>
+    </libraries>
+    <schema name="" catalog=""/>
+  </data-source>
+  <data-source source="LOCAL" name="Rails has_many_through: development" product="SQLite" version="3.7.2" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native" uuid="779bdf53-3348-4e71-9ea1-ca4f65f87980">
+    <auto-commit>false</auto-commit>
+    <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+    <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/development.sqlite3</jdbc-url>
+    <libraries>
+      <library>
+        <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/xerial-sqlite-license.txt</url>
+      </library>
+      <library>
+        <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/sqlite-jdbc-3.7.2.jar</url>
+      </library>
+    </libraries>
+    <schema name="" catalog=""/>
+    <table name="bands" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR(255)" length="2000000000" precision="10" nullable="true" jdbcType="12"/>
+      <column name="num_members" sqlType="INTEGER" length="2000000000" precision="10" nullable="true" jdbcType="4"/>
+      <column name="created_at" sqlType="DATETIME" length="2000000000" precision="10" nullable="false" jdbcType="12"/>
+      <column name="updated_at" sqlType="DATETIME" length="2000000000" precision="10" nullable="false" jdbcType="12"/>
+      <primary-key columns="id"/>
+    </table>
+    <table name="bookings" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4"/>
+      <column name="band_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="true" jdbcType="4"/>
+      <column name="club_id" sqlType="INTEGER" length="2000000000" precision="10" nullable="true" jdbcType="4"/>
+      <column name="fee" sqlType="FLOAT" length="2000000000" precision="10" nullable="true" jdbcType="6"/>
+      <column name="show_date" sqlType="DATE" length="2000000000" precision="10" nullable="true" jdbcType="12"/>
+      <column name="created_at" sqlType="DATETIME" length="2000000000" precision="10" nullable="false" jdbcType="12"/>
+      <column name="updated_at" sqlType="DATETIME" length="2000000000" precision="10" nullable="false" jdbcType="12"/>
+      <primary-key columns="id"/>
+    </table>
+    <table name="clubs" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" length="2000000000" precision="10" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR(255)" length="2000000000" precision="10" nullable="true" jdbcType="12"/>
+      <column name="street_address" sqlType="VARCHAR(255)" length="2000000000" precision="10" nullable="true" jdbcType="12"/>
+      <column name="created_at" sqlType="DATETIME" length="2000000000" precision="10" nullable="false" jdbcType="12"/>
+      <column name="updated_at" sqlType="DATETIME" length="2000000000" precision="10" nullable="false" jdbcType="12"/>
+      <primary-key columns="id"/>
+    </table>
+    <table name="schema_migrations" schema="" catalog="" type="TABLE">
+      <column name="version" sqlType="VARCHAR(255)" length="2000000000" precision="10" nullable="false" jdbcType="12"/>
+      <index name="unique_schema_migrations" unique="true" columns="version"/>
+    </table>
+    <table name="sqlite_sequence" schema="" catalog="" type="TABLE">
+      <column name="name" sqlType="" length="2000000000" precision="10" nullable="true" jdbcType="12"/>
+      <column name="seq" sqlType="" length="2000000000" precision="10" nullable="true" jdbcType="12"/>
+    </table>
+  </data-source>
+</component>
