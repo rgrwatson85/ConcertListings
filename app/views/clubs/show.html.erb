@@ -1,33 +1,46 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Name:</b>
-  <%= @club.name %>
-</p>
-
-<p>
-  <b>Street address:</b>
-  <%= @club.street_address %>
-</p>
-
-<p>
-  <b>Our Lineup:</b>
+<div class="page-header">
   <table>
-    <tr>
-      <td><b>Band Name</b></td>
-      <td><b>Show Date</b></td>
-      <td><b>Cover Charge</b></td>
-    </tr>
-    <% @club.bookings.each do |booking| %>
-      <tr>
-        <% band = Band.find(booking.band_id) %>
-        <td><%= link_to band.name, band %></td>
-        <td><%= link_to "#{booking.show_date}", booking %></td>
-        <td><%= sprintf('$%0.02f', booking.fee) %></td>
-      </tr>
-    <% end %>
+    <tbody>
+        <tr>
+          <td><h1><%= @club.name %></h1></td>
+          <td> &nbsp; &mdash; &nbsp; </td>
+          <td><%= @club.street_address %></td>
+        </tr>
+    </tbody>
   </table>
-</p>
+</div>
 
-<%= link_to "Edit #{@club.name} info", edit_club_path(@club) %> |
-<%= link_to 'Back To Clubs', clubs_path %>
+<div>
+  <h4>Upcoming Shows</h4>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Band</th>
+      <th>Show Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @club.bookings.each do |booking| %>
+        <% band = Band.find(booking.band_id) %>
+        <tr>
+          <td><%= link_to  band.name, band_path(band) %></td>
+          <td><%= booking.show_date.strftime('%b %d, %Y') %></td>
+          <td>
+            <%= link_to 'View Info', booking_path(booking), :class => 'btn btn-mini'%>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="form-actions">
+  <%= link_to 'Back To All Clubs', clubs_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_club_path(@club), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              club_path(@club),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

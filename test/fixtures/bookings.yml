@@ -3,9 +3,11 @@
 one:
   band_id: 1
   club_id: 1
+  show_date: 2013-09-17
   fee: 1.5
 
 two:
   band_id: 1
   club_id: 1
+  show_date: 2013-09-17
   fee: 1.5

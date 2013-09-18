@@ -1,33 +1,44 @@
-<h1>Listing bookings</h1>
-
-<table>
-  <tr>
-    <th><a title="View All Bands"> <%= link_to 'Band', bands_path %></a></th>
-    <th><a title="View All Clubs"> <%= link_to 'Club', clubs_path %></a></th>
-    <th>Fee</th>
-    <th>Show Date</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @bookings.each do |booking| %>
-  <tr>
-    <%
-       band = Band.find(booking.band_id)
-       club = Club.find(booking.club_id)
-    %>
-    <td><%= link_to band.name, band %></td>
-    <td><%= link_to club.name, club %></td>
-    <td><%= sprintf('$%0.02f', booking.fee) %></td>
-    <td><%= booking.show_date %></td>
-    <td><%= link_to 'Show', booking %></td>
-    <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
-    <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<%- model_class = Booking -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= Band.model_name.human.titleize %></th>
+      <th><%= Club.model_name.human.titleize %></th>
+      <th><%= model_class.human_attribute_name(:show_date).titleize %></th>
+      <th><%= model_class.human_attribute_name(:fee) %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bookings.each do |booking| %>
+      <tr>
+        <%
+           band = Band.find(booking.band_id)
+           club = Club.find(booking.club_id)
+        %>
+        <td><%= link_to band.name, band_path(band) %></td>
+        <td><%= link_to club.name, club_path(club) %></td>
+        <td><%= booking.show_date.strftime('%b %d, %Y') %></td>
+        <td><%= sprintf('$%0.02f',booking.fee) %></td>
+        <td style="text-align: center">
+          <%= link_to t('.show', :default => t("helpers.links.show")),
+                      booking_path(booking), :class => 'btn btn-mini' %>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_booking_path(booking), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      booking_path(booking),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Booking', new_booking_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_booking_path,
+            :class => 'btn btn-primary' %>
