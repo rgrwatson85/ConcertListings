@@ -19,20 +19,8 @@ clubs = Club.create([
                     {name: 'The Gold Club', street_address: '6842 Milam'},
                     ])
 
-bookings = Booking.create([
-                          {band_id: 1, club_id: 1, fee: 25, show_date: Date.new(2013, 9, 1)},
-                          {band_id: 1, club_id: 2, fee: 35, show_date: Date.new(2013, 9, 2)},
-                          {band_id: 1, club_id: 3, fee:  0, show_date: Date.new(2013, 9, 3)},
-
-                          {band_id: 2, club_id: 1, fee: 15, show_date: Date.new(2013, 9, 1)},
-                          {band_id: 2, club_id: 2, fee: 15, show_date: Date.new(2013, 9, 2)},
-                          {band_id: 2, club_id: 3, fee: 25, show_date: Date.new(2013, 9, 3)},
-
-                          {band_id: 3, club_id: 1, fee: 35, show_date: Date.new(2013, 9, 1)},
-                          {band_id: 3, club_id: 2, fee: 25, show_date: Date.new(2013, 9, 2)},
-                          {band_id: 3, club_id: 3, fee: 15, show_date: Date.new(2013, 9, 3)},
-
-                          {band_id: 4, club_id: 1, fee: 10, show_date: Date.new(2013, 9, 1)},
-                          {band_id: 4, club_id: 2, fee: 10, show_date: Date.new(2013, 9, 2)},
-                          {band_id: 4, club_id: 3, fee: 10, show_date: Date.new(2013, 9, 3)},
-                          ])
+bands.each do |band|
+  clubs.each do |club|
+    Booking.create({band_id: band.id, club_id: club.id, fee: rand(150)+rand, show_date: Date.today+rand(500)})
+  end
+end
